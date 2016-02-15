@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.2.0'
 
@@ -6,6 +7,7 @@ gem 'rails', '3.2.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'jwt'
+gem 'rails_12factor'
 
 
 # Gems used only for assets and not required
@@ -22,6 +24,10 @@ end
 
 group :development do
   gem 'debugger'
+end
+
+group :production do
+  gem 'pg'
 end
 gem 'jquery-rails'
 
