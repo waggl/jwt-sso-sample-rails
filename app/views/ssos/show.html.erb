@@ -1,0 +1,15 @@
+<h1>Enter the email to test</h1>
+
+<%= form_for :sso do |f| %>
+  <%= f.hidden_field :return_to_path, :value => params["return_to_path"] %>
+  <%= f.hidden_field :return_to_params, :value => params["return_to_params"] %>
+  <%= f.label "Email" %>
+  <%= f.text_field :email %></br>
+
+  <%= f.label "Client Secret Key" %>
+  <%= f.text_field :secret_key, value: @secret_key %></br>
+
+  <%= f.label "Waggl Server" %>
+  <%= f.text_field :waggl_server, value: @waggl_server %></br>
+  <%= f.submit 'Test' %>
+<% end %>
