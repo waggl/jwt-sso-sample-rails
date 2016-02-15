@@ -12,7 +12,7 @@ class SsosController < ApplicationController
 
   def redirect_url
     base = "#{params[:sso][:waggl_server] + params[:sso][:return_to_path]}?sso_jwt=#{jwt_token}"
-    if params[:sso][:return_to_params]
+    if params[:sso][:return_to_params].present?
       base = "#{base}&#{params[:sso][:return_to_params]}"
     end
     base
