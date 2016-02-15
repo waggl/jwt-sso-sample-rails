@@ -1,4 +1,4 @@
 == JWT Rails application
 
-WAGGL_SSO_URL = "http://localhost:3000/waggl/sso"
+SSO_PATH = "/waggl/sso"
 
