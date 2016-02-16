@@ -19,7 +19,13 @@ class SsosController < ApplicationController
   end
 
   def jwt_token
-    payload = {email: params[:sso][:email]}
+    payload = {
+      email: params[:sso][:email],
+      iat: Time.now.to_i,
+      nbf: Time.now.to_i - 3 * 1.minute,
+      exp: Time.now.to_i + 5 * 1.minute,
+      aud: "www.waggl.com"
+    }
     hmac_secret = params[:sso][:secret_key]
     JWT.encode payload, hmac_secret, 'HS512'
   end
