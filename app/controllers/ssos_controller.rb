@@ -20,7 +20,9 @@ class SsosController < ApplicationController
 
   def jwt_token
     payload = {
-      email: params[:sso][:email],
+      data: {
+        email: params[:sso][:email]
+      },
       iat: Time.now.to_i,
       nbf: Time.now.to_i - 3 * 1.minute,
       exp: Time.now.to_i + 5 * 1.minute,
