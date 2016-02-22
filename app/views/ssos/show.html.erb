@@ -4,12 +4,24 @@
   <%= f.hidden_field :return_to_path, :value => params["return_to_path"] %>
   <%= f.hidden_field :return_to_params, :value => params["return_to_params"] %>
   <%= f.label "Email" %>
-  <%= f.text_field :email %></br>
+  <%= f.text_field :email %></br></br>
+
+  <%= f.label "Use Tags?" %>
+  <%= f.radio_button :use_tags, 'no', :checked => true %> 
+  <%= label :use_tags_no, 'No' %>
+  <%= f.radio_button :use_tags, 'yes' %>
+  <%= label :use_tags_yes, 'Yes' %></br></br>
+
+  <%= f.label "Tags" %>
+  <%= f.text_field :tags, placeholder: "{'Department' => 'Sales', 'Region' => 'East'}", size: 42 %>
+  <%= f.label "Format: {'<user_category>' => '<user_category_value>', '<user_category>' => '<user_category_value>', ...}" %></br></br>
 
   <%= f.label "Client Secret Key" %>
-  <%= f.text_field :secret_key, value: @secret_key %></br>
+  <%= f.text_field :secret_key, value: @secret_key %></br></br>
+
 
   <%= f.label "Waggl Server" %>
-  <%= f.text_field :waggl_server, value: @waggl_server %></br>
+  <%= f.text_field :waggl_server, value: @waggl_server %></br></br>
+
   <%= f.submit 'Test' %>
 <% end %>

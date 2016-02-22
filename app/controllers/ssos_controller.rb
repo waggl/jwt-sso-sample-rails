@@ -20,9 +20,7 @@ class SsosController < ApplicationController
 
   def jwt_token
     payload = {
-      data: {
-        email: params[:sso][:email]
-      },
+      data: data,
       iat: Time.now.to_i,
       nbf: Time.now.to_i - 3 * 1.minute,
       exp: Time.now.to_i + 5 * 1.minute,
@@ -30,5 +28,17 @@ class SsosController < ApplicationController
     }
     hmac_secret = params[:sso][:secret_key]
     JWT.encode payload, hmac_secret, 'HS512'
+  end
+
+  def data
+    information = { email: params[:sso][:email] }
+    if params[:sso][:use_tags] == 'yes'
+      if params[:sso][:tags].match(/^{.+}$/)
+        information[:tags] = eval(params[:sso][:tags])
+      else
+        raise "Bad tags format"
+      end
+    end
+    information
   end
 end
